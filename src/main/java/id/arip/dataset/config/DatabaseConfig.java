@@ -5,7 +5,6 @@ import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
-import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -35,13 +34,6 @@ public class DatabaseConfig {
     }
 
     @Bean
-    public HibernateTransactionManager transactionManager() {
-        HibernateTransactionManager transactionManager = new HibernateTransactionManager();
-        transactionManager.setSessionFactory(sessionFactory().getObject());
-        return transactionManager;
-    }
-
-    @Bean
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactoryBean = new LocalSessionFactoryBean();
         sessionFactoryBean.setDataSource(dataSource());
@@ -66,7 +58,9 @@ public class DatabaseConfig {
             );
 
             statement.executeUpdate("INSERT INTO user(username, password, role) " +
-                    "VALUES('admin', '" + passwordEncoder.encode("admin")+ "', 'ADMIN')");
+                    "VALUES('admin', '" + passwordEncoder.encode("admin")+ "', 'ROLE_ADMIN')");
+            statement.executeUpdate("INSERT INTO user(username, password, role) " +
+                    "VALUES('annotator', '" + passwordEncoder.encode("annotator")+ "', 'ROLE_ANNOTATOR')");
 
         } catch (SQLException e) {
             e.printStackTrace();
