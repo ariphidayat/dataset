@@ -8,7 +8,6 @@
             </sec:authorize>
             <table>
                 <th>Username</th>
-                <th>Password</th>
                 <th>Role</th>
                 <c:forEach var="user" items="${users}">
                     <tr>

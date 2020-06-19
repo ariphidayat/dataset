@@ -8,28 +8,8 @@ import static java.sql.Types.*;
 public class SQLiteDialect extends Dialect {
 
     public SQLiteDialect() {
-        registerColumnType(BIT, "integer");
-        registerColumnType(TINYINT, "tinyint");
-        registerColumnType(SMALLINT, "smallint");
-        registerColumnType(INTEGER, "integer");
-        registerColumnType(BIGINT, "bigint");
-        registerColumnType(FLOAT, "float");
-        registerColumnType(REAL, "real");
-        registerColumnType(DOUBLE, "double");
-        registerColumnType(NUMERIC, "numeric");
-        registerColumnType(DECIMAL, "decimal");
-        registerColumnType(CHAR, "char");
-        registerColumnType(VARCHAR, "varchar");
-        registerColumnType(LONGVARCHAR, "longvarchar");
-        registerColumnType(DATE, "date");
-        registerColumnType(TIME, "time");
-        registerColumnType(TIMESTAMP, "timestamp");
-        registerColumnType(BINARY, "blob");
-        registerColumnType(VARBINARY, "blob");
-        registerColumnType(LONGVARBINARY, "blob");
-        registerColumnType(BLOB, "blob");
-        registerColumnType(CLOB, "clob");
-        registerColumnType(BOOLEAN, "integer");
+        registerColumnType(INTEGER, "INTEGER");
+        registerColumnType(VARCHAR, "VARCHAR");
     }
 
     public IdentityColumnSupport getIdentityColumnSupport() {

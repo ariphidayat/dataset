@@ -57,10 +57,24 @@ public class DatabaseConfig {
                             "role VARCHAR(20) NOT NULL)"
             );
 
+            statement.execute("DROP TABLE IF EXISTS task");
+
+            statement.executeUpdate(
+                    "CREATE TABLE task(" +
+                            "task_id INTEGER NOT NULL PRIMARY KEY," +
+                            "task VARCHAR(150) NOT NULL," +
+                            "booked_by VARCHAR(25)," +
+                            "deleted INTEGER)"
+            );
+
             statement.executeUpdate("INSERT INTO user(username, password, role) " +
                     "VALUES('admin', '" + passwordEncoder.encode("admin")+ "', 'ROLE_ADMIN')");
             statement.executeUpdate("INSERT INTO user(username, password, role) " +
                     "VALUES('annotator', '" + passwordEncoder.encode("annotator")+ "', 'ROLE_ANNOTATOR')");
+
+            statement.executeUpdate("INSERT INTO task(task_id, task, deleted) VALUES(1, 'Create Dataset Project', 0)");
+            statement.executeUpdate("INSERT INTO task(task_id, task, deleted) VALUES(2, 'Host Dataset Project', 0)");
+            statement.executeUpdate("INSERT INTO task(task_id, task, deleted) VALUES(3, 'Send Dataset Project', 0)");
 
         } catch (SQLException e) {
             e.printStackTrace();
