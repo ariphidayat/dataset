@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Entity
 public class Task {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "task_id")
     private Integer taskId;
     private String task;

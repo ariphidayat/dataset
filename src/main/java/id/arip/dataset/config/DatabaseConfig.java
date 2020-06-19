@@ -61,7 +61,7 @@ public class DatabaseConfig {
 
             statement.executeUpdate(
                     "CREATE TABLE task(" +
-                            "task_id INTEGER NOT NULL PRIMARY KEY," +
+                            "task_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT," +
                             "task VARCHAR(150) NOT NULL," +
                             "booked_by VARCHAR(25)," +
                             "deleted INTEGER)"

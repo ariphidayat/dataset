@@ -27,6 +27,7 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public void save(Task task) {
+        task.setDeleted(0);
         taskRepository.save(task);
     }
 
