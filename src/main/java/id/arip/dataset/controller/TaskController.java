@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Controller
-@RequestMapping("tasks")
+@RequestMapping("/")
 public class TaskController {
 
     @Autowired
@@ -37,7 +37,7 @@ public class TaskController {
         Task task = taskService.getTask(taskId);
         task.setBookedBy(principal.getName());
         taskService.book(task);
-        return "redirect:/tasks";
+        return "redirect:/";
     }
 
     @GetMapping("revoke")
@@ -46,13 +46,13 @@ public class TaskController {
         if (task.getBookedBy().equals(principal.getName())) {
             taskService.revoke(task);
         }
-        return "redirect:/tasks";
+        return "redirect:/";
     }
 
     @GetMapping("delete")
     public String deleteUser(@RequestParam("taskId") Integer taskId) {
         taskService.delete(taskId);
-        return "redirect:/tasks";
+        return "redirect:/";
     }
 
     @PostMapping("upload")
@@ -64,7 +64,7 @@ public class TaskController {
             task.setTask(taskName);
             taskService.save(task);
         }
-        return "redirect:/tasks";
+        return "redirect:/";
     }
 
     @GetMapping(value = "download", produces = "application/zip")
