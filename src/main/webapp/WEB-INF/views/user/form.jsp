@@ -38,10 +38,12 @@
               <div class="form-group">
                     <label for="username">Username</label>
                     <form:input path="username" class="form-control"/>
+                    <form:errors path="username" class="text-danger"/>
                 </div>
                 <div>
                     <label for="password">Password</label>
-                    <td><form:input path="password" type="password" class="form-control"/>
+                    <form:input path="password" type="password" class="form-control"/>
+                    <form:errors path="password" class="text-danger"/>
                 </div>
                 <div>
                   <label for="role">Role</label>
@@ -49,6 +51,7 @@
                     <form:option value="ROLE_ADMIN" label="Admin"/>
                     <form:option value="ROLE_ANNOTATOR" label="Annotator"/>
                   </form:select>
+                  <form:errors path="role" class="text-danger"/>
                 </div>
                 <div class="mt-3">
                   <input type="submit" class="btn btn-outline-primary"></input>

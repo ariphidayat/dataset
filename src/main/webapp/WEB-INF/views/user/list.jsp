@@ -34,6 +34,9 @@
     <main class="container">
       <div class="row m-4 py-5 px-3">
         <div class="w-80 mx-auto">
+          <c:if test="${not empty msg}">
+            <div class="alert alert-success">${msg}</div>
+          </c:if>
           <sec:authorize access="hasRole('ADMIN')">
             <div class="mb-3">
               <a href="/users/new" class="btn btn-md btn-outline-primary" >New User</a>
@@ -49,7 +52,13 @@
               <c:forEach var="user" items="${users}">
                 <tr>
                   <td>${user.username}</td>
-                  <td>${user.role}</td>
+                  <td>
+                    <c:choose>
+                      <c:when test="${user.role eq 'ROLE_ADMIN'}">Admin</c:when>
+                      <c:when test="${user.role eq 'ROLE_ANNOTATOR'}">Annotator</c:when>
+                      <c:otherwise>${user.role}</c:otherwise>
+                    </c:choose>
+                  </td>
                   <td>
                     <sec:authorize access="hasRole('ADMIN')">
                       <a href="/users/modify?username=${user.username}" class="btn btn-sm btn-outline-primary">Edit</a>
