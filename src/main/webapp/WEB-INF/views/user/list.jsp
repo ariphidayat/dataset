@@ -35,7 +35,7 @@
       <div class="row m-4 py-5 px-3">
         <div class="w-80 mx-auto">
           <c:if test="${not empty msg}">
-            <div class="alert alert-success">${msg}</div>
+            <div class="alert alert-primary">${msg}</div>
           </c:if>
           <sec:authorize access="hasRole('ADMIN')">
             <div class="mb-3">

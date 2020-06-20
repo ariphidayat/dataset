@@ -35,11 +35,19 @@
     <main class="container">
       <div class="row m-4 py-5 px-3">
         <div class="w-80 mx-auto">
+            <c:if test="${not empty msg}">
+              <div class="alert alert-primary">${msg}</div>
+            </c:if>
             <sec:authorize access="hasAnyRole('ADMIN')">
-              <form:form method="POST" action="/upload" enctype="multipart/form-data" class="input-group mb-4">
-                <input type="file" name="file"/>
-                <input type="submit" value="Upload"/>
-              </form:form>
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Upload Dataset</h5>
+                  <form:form method="POST" action="/upload" enctype="multipart/form-data" class="input-group mb-4">
+                   <input type="file" name="file"/>
+                   <input type="submit" value="Upload"/>
+                  </form:form>
+                </div>
+              </div>
             </sec:authorize>
             <table class="table table-striped">
               <thead>

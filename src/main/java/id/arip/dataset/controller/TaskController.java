@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletResponse;
 import java.security.Principal;
@@ -56,14 +57,18 @@ public class TaskController {
     }
 
     @PostMapping("upload")
-    public String upload(@RequestParam("file") MultipartFile file) {
-        if (file.getContentType().equals("application/zip")) {
-            Task task = new Task();
-            String taskName = Objects.requireNonNull(file.getOriginalFilename())
-                    .replaceAll("(?i).zip", "");
-            task.setTask(taskName);
-            taskService.save(task);
+    public String upload(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttr) {
+        if (!Objects.equals(file.getContentType(), "application/zip")) {
+            redirectAttr.addFlashAttribute("msg", "ERROR: Dataset should .Zip file.");
+            return "redirect:/";
         }
+
+        Task task = new Task();
+        String taskName = file.getOriginalFilename().replaceAll("(?i).zip", "");
+        task.setTask(taskName);
+        taskService.save(task);
+        redirectAttr.addFlashAttribute("msg", "Upload New Dataset Successfully.");
+
         return "redirect:/";
     }
 
